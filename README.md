@@ -4,3 +4,6 @@ Python application that retrieve basic wine info from dynamic vivino webpage lik
 # Requirements
 This project, in order to use dynamic web scraping features, needs [Selenium] and a [driver] for the browser you want to use.
 This project contains already a chromedriver for Chrome version 80. To know your Chrome version type chrome://settings/help in your Chrome search bar.
+
+# Instructions
+Run scraperv3.py
