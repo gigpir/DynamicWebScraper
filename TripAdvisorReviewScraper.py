@@ -111,6 +111,24 @@ def main(args):
 
     for r in airline.reviews:
         print(r)
+
+    if args.csv:
+        import csv
+        data_list = [['author',
+                      'flightDate',
+                      'flightFromCity',
+                      'flightToCity',
+                      'flightType',
+                      'flightClass',
+                      'mark',
+                      'title',
+                      'text'
+                      ]]
+        with open(airline.companyName+'_'+str(len(airline.reviews))+'_of_'+str(airline.nReviews)+'_'+str(airline.avgMark)+'.csv', 'w', newline='') as file:
+            writer = csv.writer(file, delimiter='|')
+            writer.writerows(data_list)
+            writer.writerows(airline.getListReviews())
+
     # time.sleep(5) # Let the user actually see something!
     driver.quit()
 
@@ -118,7 +136,10 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("--company-link", type=str, help="paste the trip advisor link of the company you want to know about",
                         nargs='?', default='https://www.tripadvisor.it/Airline_Review-d8729018-Reviews-Alitalia', const=0)
-    parser.add_argument("--max-rev", type=int, help="max reviews to scrape",
-                        nargs='?', default='100', const=0)
+    parser.add_argument("--max-rev", type=int, help="max reviews to scrape, set to 50 default",
+                        nargs='?', default='50', const=0)
+    parser.add_argument("--csv", dest='csv', action='store_true', default=False, help="to produce a csv file")
+
     args = parser.parse_args()
+
     main(args)

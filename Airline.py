@@ -13,6 +13,22 @@ class Airline:
         str(self.nReviews) +' | '+ \
         str(self.avgMark)
 
+    def getListReviews(self):
+        out = []
+        for i,r in enumerate(self.reviews):
+            rS = [r.author,
+                  r.flightDate,
+                  r.flightFromCity,
+                  r.flightToCity,
+                  r.flightType,
+                  r.flightClass,
+                  r.mark,
+                  r.title,
+                  r.text
+                  ]
+            out.append(rS)
+
+        return out
 class Review:
 
     def __init__(self, author, flightDate, flightFromCity, flightToCity, flightType, flightClass, mark, title, text):
