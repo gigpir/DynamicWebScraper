@@ -10,7 +10,6 @@ driver.get('https://www.tripadvisor.it/Airline_Review-d8729018-Reviews-Alitalia'
 
 time.sleep(2) # Let the user actually see something!
 
-
 companyName = driver.find_element_by_class_name('flights-airline-review-page-airline-review-header-AirlineDetailHeader__airlineName--2JeT1').text
 
 nReviews = driver.find_element_by_class_name('ui_poi_review_rating  ')
@@ -25,7 +24,18 @@ reviewBoxes = driver.find_elements_by_xpath('//div[@class="location-review-card-
 print(companyName)
 print(nReviews)
 print(avgMark)
-print(len(reviewBoxes))
-print(reviewBoxes[1].text)
+
+for i in range(5):
+    name = reviewBoxes[i].find_element_by_css_selector('a.social-member-event-MemberEventOnObjectBlock__member--35-jC')
+    print(name.text)
+
+    tripDate = reviewBoxes[i].find_elements_by_css_selector('span.location-review-review-list-parts-EventDate__event_date--1epHa')
+    # optional review attribute replace null if no exist
+    if len(tripDate) != 0:
+        tripDate = tripDate[0].text.replace('Data del viaggio: ', '', 2)
+    else:
+        tripDate = 'NULL'
+
+
 #time.sleep(5) # Let the user actually see something!
 driver.quit()
