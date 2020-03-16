@@ -1,11 +1,18 @@
 import requests
-import bs4 as bs
-import urllib.request
-URL = 'https://www.vivino.com/explore?e=eJwFwb0KgCAYBdC3uWMUEk13bGiNmiLiy0yE1DDp5-07xyeqooZ3gQ28vFQl9MdugGY79jhZwe68JTmT5UBcmSS7YK9FbpPEGkRu5tJ48jSz-gEIaBrF'
+from bs4 import BeautifulSoup
 
-source = urllib.request.urlopen(URL)
-soup = bs.BeautifulSoup(source,'xml')
-js_test = soup.findAll('span', class_='vintageTitle__wine--U7t9G')
+import requests
+URL = 'https://www.tripadvisor.it/Airline_Review-d8729018-Reviews-Alitalia'
 
-print(js_test)
+headers = {
+    "User-Agent": 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36'
+}
+
+page = requests.get(URL, headers=headers)
+
+soup = BeautifulSoup(page.content, 'html.parser')
+
+print(soup.prettify())
+
+
 
